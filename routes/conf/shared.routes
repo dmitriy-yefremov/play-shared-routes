@@ -1,4 +1,4 @@
 
-GET       /foo/hello        @net.yefremov.sample.sharedroutes.foo.FooControllerApi.helloFoo()
+GET       /foo/hello        @net.yefremov.sample.sharedroutes.foo.FooControllerApi.helloFoo(name)
 
-GET       /bar/hello        @net.yefremov.sample.sharedroutes.bar.BarControllerApi.helloBar()
+GET       /bar/hello        @net.yefremov.sample.sharedroutes.bar.BarControllerApi.helloBar(name)

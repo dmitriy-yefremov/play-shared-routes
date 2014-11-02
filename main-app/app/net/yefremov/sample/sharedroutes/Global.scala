@@ -3,18 +3,20 @@ package net.yefremov.sample.sharedroutes
 import net.yefremov.sample.sharedroutes.bar.{BarControllerApi, BarController}
 import net.yefremov.sample.sharedroutes.foo.{FooController, FooControllerApi}
 import play.api.GlobalSettings
+import play.api.mvc.Controller
 
 object Global extends GlobalSettings {
 
-  val Foo = classOf[FooControllerApi]
-  val Bar = classOf[BarControllerApi]
+  /**
+   * Map containing mapping from API traits to their implementations.
+   */
+  private val controllerMapping = Map[Class[_], Controller](
+    classOf[FooControllerApi] -> FooController,
+    classOf[BarControllerApi] -> BarController
+  )
 
   override def getControllerInstance[T](controllerClass: Class[T]): T = {
-    println(s"Creating controller for $controllerClass")
-    controllerClass match {
-      case Foo => FooController.asInstanceOf[T]
-      case Bar => BarController.asInstanceOf[T]
-    }
+    controllerMapping(controllerClass).asInstanceOf[T]
   }
 
 
