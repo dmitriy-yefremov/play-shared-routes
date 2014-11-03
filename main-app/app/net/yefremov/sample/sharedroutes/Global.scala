@@ -19,6 +19,4 @@ object Global extends GlobalSettings {
     controllerMapping(controllerClass).asInstanceOf[T]
   }
 
-
-
 }
